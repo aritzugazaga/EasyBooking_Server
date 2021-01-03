@@ -1,4 +1,4 @@
-package easyBooking;
+package domainObjects;
 
 import java.util.Date;
 

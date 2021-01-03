@@ -1,6 +1,7 @@
 package easyBooking;
 
 
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -8,7 +9,14 @@ import java.util.List;
 
 import javax.jdo.*;
 
+import domainObjects.Pago;
+import domainObjects.Reserva;
+import domainObjects.Usuario;
+import domainObjects.Vuelo;
+
 public class Main {
+	@SuppressWarnings("rawtypes")
+	
 	public static void main(String[] args) {
 		try {
 			PersistenceManagerFactory persistentManagerFactory = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");

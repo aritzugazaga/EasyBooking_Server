@@ -1,4 +1,4 @@
-package easyBooking;
+package domainObjects;
 public class Aerolinea {
 
 	private int codigo_aerolinea;
