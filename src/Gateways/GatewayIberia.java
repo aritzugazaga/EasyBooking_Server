@@ -1,5 +1,5 @@
 package Gateways;
 
-public class GatewayIberia {
+public class GatewayIberia implements IGatewayAerolinea {
 
 }

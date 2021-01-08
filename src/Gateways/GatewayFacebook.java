@@ -1,5 +1,5 @@
 package Gateways;
 
-public class GatewayFacebook {
+public class GatewayFacebook implements IGatewayLogin {
 
 }

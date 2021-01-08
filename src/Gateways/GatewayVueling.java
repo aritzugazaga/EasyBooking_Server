@@ -1,5 +1,5 @@
 package Gateways;
 
-public class GatewayVueling {
+public class GatewayVueling implements IGatewayAerolinea {
 
 }

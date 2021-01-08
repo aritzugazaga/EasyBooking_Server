@@ -1,5 +1,5 @@
 package Gateways;
 
-public class GatewayPaypal {
+public class GatewayPaypal implements IGatewayPago {
 
 }

@@ -16,9 +16,9 @@ public class FactoryGateway {
 		}
 
 		if (type.equalsIgnoreCase("VUELING")) {
-			return (IGatewayAerolinea) new GatewayVueling();
+			return new GatewayVueling();
 		} else if (type.equalsIgnoreCase("IBERIA")) {
-			return (IGatewayAerolinea) new GatewayIberia();
+			return new GatewayIberia();
 		} else {
 			return null;
 		}
@@ -31,9 +31,9 @@ public class FactoryGateway {
 		}
 
 		if (type.equalsIgnoreCase("GOOGLE")) {
-			return (IGatewayLogin) new GatewayGoogle();
+			return new GatewayGoogle();
 		} else if (type.equalsIgnoreCase("FACEBOOK")) {
-			return (IGatewayLogin) new GatewayFacebook();
+			return new GatewayFacebook();
 		} else {
 			return null;
 		}
@@ -46,9 +46,9 @@ public class FactoryGateway {
 		}
 
 		if (type.equalsIgnoreCase("VISA")) {
-			return (IGatewayPago) new GatewayTarjetaCredito();
+			return new GatewayTarjetaCredito();
 		} else if (type.equalsIgnoreCase("PAYPAL")) {
-			return (IGatewayPago) new GatewayPaypal();
+			return new GatewayPaypal();
 		} else {
 			return null;
 		}

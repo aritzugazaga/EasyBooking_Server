@@ -1,5 +1,5 @@
 package Gateways;
 
-public class GatewayTarjetaCredito {
+public class GatewayTarjetaCredito implements IGatewayPago {
 
 }

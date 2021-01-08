@@ -1,5 +1,5 @@
 package Gateways;
 
-public class GatewayGoogle {
+public class GatewayGoogle implements IGatewayLogin {
 
 }
