@@ -1,12 +1,18 @@
-package domainObjects;
-public class Aerolinea {
+package DTO;
 
+import java.io.Serializable;
+
+public class AerolineaDTO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int codigo_aerolinea;
 	private String nombre;
 	
 	//NOTA: No es necesario constructor. Usad el que se genera por defecto sin parámetros
 	//y luego los métodos SET.
-	public Aerolinea(int codigo_aerolinea, String nombre) {
+	public AerolineaDTO(int codigo_aerolinea, String nombre) {
 		super();
 		this.codigo_aerolinea = codigo_aerolinea;
 		this.nombre = nombre;
@@ -25,3 +31,5 @@ public class Aerolinea {
 		this.nombre = nombre;
 	}	
 }
+
+

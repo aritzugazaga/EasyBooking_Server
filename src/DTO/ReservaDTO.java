@@ -1,13 +1,14 @@
-package domainObjects;
+package DTO;
 
-import java.util.List;
+import java.io.Serializable;
 import java.util.Date;
-import javax.jdo.annotations.*;
+import java.util.List;
 
-
-@PersistenceCapable
-public class Reserva {
-	
+public class ReservaDTO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double precio;
 	private List<String> nombre_pasajeros;
 	private Date fecha;
@@ -17,14 +18,14 @@ public class Reserva {
 	
 	//NOTA: No es necesario constructor. Usad el que se genera por defecto sin parámetros
 	//y luego los métodos SET.
-	public Reserva(double precio, List<String> nombre_pasajeros, Date fecha) {
+	public ReservaDTO(double precio, List<String> nombre_pasajeros, Date fecha) {
 		super();
 		this.precio = precio;
 		this.nombre_pasajeros = nombre_pasajeros;
 		this.fecha = fecha;
 	}
 	
-	public Reserva() {
+	public ReservaDTO() {
 		super();
 
 	}
@@ -67,5 +68,4 @@ public class Reserva {
 		// TODO - implement Reserva.reservarVuelo
 		throw new UnsupportedOperationException();
 	}
-
 }
