@@ -1,16 +1,22 @@
-package easyBooking;
+package DTO;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TarjetaCredito extends Pago {
+import domainObjects.Reserva;
 
+public class TarjetaCreditoDTO extends PagoDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String numero_tarjeta;
 	private String fecha_caducidad;
 	private String titular;
 	
 	//NOTA: No es necesario constructor. Usad el que se genera por defecto sin parámetros
 	//y luego los métodos SET.
-	public TarjetaCredito(Date fecha_pago, Reserva reserva, String numero_tarjeta,
+	public TarjetaCreditoDTO(Date fecha_pago, Reserva reserva, String numero_tarjeta,
 			String fecha_caducidad, String titular) {
 		super(fecha_pago, reserva);
 		this.numero_tarjeta = numero_tarjeta;
@@ -41,5 +47,4 @@ public class TarjetaCredito extends Pago {
 	public void setTitular(String titular) {
 		this.titular = titular;
 	}
-
 }

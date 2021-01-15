@@ -1,25 +1,22 @@
-package easyBooking;
+package DTO;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.jdo.annotations.*;
 
-@PersistenceCapable
-public class Vuelo {
-	
-	//NOTA: Falta la fecha de llegada.
+import domainObjects.Reserva;
+
+public class VueloDTO implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Date fecha_salida;
 	private double precio_unitario;
 	private int asientos_disponibles;
 	private List<Reserva> reservas;
-	
-	//NOTA: Faltan los atributos que relacionan al vuelo con los aeropuertos y la aerolínea.
-	//Estos atributos no se almacenarán en la BBDD porque esas clases no son persistentes. Para
-	//ello tenéis que usar la anotación @NotPersistent.
-
-	//NOTA: No es necesario constructor. Usad el que se genera por defecto sin parámetros
-	//y luego los métodos SET.
-	public Vuelo(Date fecha_salida, double precio_unitario, int asientos_disponibles,
+		
+	public VueloDTO(Date fecha_salida, double precio_unitario, int asientos_disponibles,
 			List<Reserva> reservas) {
 		super();
 		this.fecha_salida = fecha_salida;
@@ -27,12 +24,12 @@ public class Vuelo {
 		this.asientos_disponibles = asientos_disponibles;
 		this.reservas = reservas;
 	}
-	
-	public Vuelo() {
+		
+	public VueloDTO() {
 		super();
 
 	}
-	
+		
 	public Date getFecha_salida() {
 		return fecha_salida;
 	}
@@ -74,5 +71,4 @@ public class Vuelo {
 		// TODO - implement Vuelo.busquedaVuelos
 		throw new UnsupportedOperationException();
 	}
-
 }

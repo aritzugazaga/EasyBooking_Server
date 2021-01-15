@@ -1,4 +1,4 @@
-package easyBooking;
+package domainObjects;
 
 import java.util.List;
 import java.util.Date;
@@ -33,31 +33,21 @@ public class Reserva {
 		return precio;
 	}
 
-
-
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-
-
 
 	public List<String> getNombre_pasajeros() {
 		return nombre_pasajeros;
 	}
 
-
-
 	public void setNombre_pasajeros(List<String> nombre_pasajeros) {
 		this.nombre_pasajeros = nombre_pasajeros;
 	}
 
-
-
 	public Date getFecha() {
 		return fecha;
 	}
-
-
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;

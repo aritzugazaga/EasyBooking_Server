@@ -1,14 +1,20 @@
-package easyBooking;
+package DTO;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Paypal extends Pago {
-	
+import domainObjects.Reserva;
+
+public class PaypalDTO extends PagoDTO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String email;
 
 	//NOTA: No es necesario constructor. Usad el que se genera por defecto sin parámetros
 	//y luego los métodos SET.
-	public Paypal(Date fecha_pago, Reserva reserva, String email) {
+	public PaypalDTO(Date fecha_pago, Reserva reserva, String email) {
 		super(fecha_pago, reserva);
 		this.email = email;
 	}
@@ -20,6 +26,4 @@ public class Paypal extends Pago {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	
 }

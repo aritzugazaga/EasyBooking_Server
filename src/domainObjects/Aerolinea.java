@@ -1,4 +1,4 @@
-package easyBooking;
+package domainObjects;
 public class Aerolinea {
 
 	private int codigo_aerolinea;
@@ -23,9 +23,5 @@ public class Aerolinea {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	
-	
-
-	
+	}	
 }
