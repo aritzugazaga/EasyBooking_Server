@@ -1,12 +1,27 @@
 package Services;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
-import DTO.PaypalDTO;
-import DTO.TarjetaCreditoDTO;
+import Gateways.GatewayPaypal;
+import Gateways.IGatewayPago;
 
-public interface IPagoService extends Remote{
-	public boolean realizarPagoPaypal(PaypalDTO paypalorigen, PaypalDTO paypaldestino, double importe, String concepto) throws RemoteException;
-	public boolean realizarPagoCreditCard(TarjetaCreditoDTO tarjetacreditoorigen, TarjetaCreditoDTO tarjetacreditodestino, double importe, String concepto) throws RemoteException;
+public class IPagoService{
+	
+	private List<IGatewayPago> pagos;
+	
+	public IPagoService() {
+		pagos = new ArrayList<IGatewayPago>();
+		GatewayPaypal paypal = new GatewayPaypal();
+		pagos.add(0, paypal);
+	}
+	
+	public boolean tieneFondos(int precio_unitario, String email, String codigo) throws RemoteException {
+		return pagos.get(0).tienedinero(precio_unitario, email, codigo);
+	}
+	
+	public boolean pagar(int precio_unitario, String email, String codigo) throws RemoteException {
+		return pagos.get(0).pagar(precio_unitario, email, codigo);
+	}
 }

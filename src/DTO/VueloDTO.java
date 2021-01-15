@@ -11,23 +11,15 @@ public class VueloDTO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String codigovuelo;
+	private String aeropuertoorigen;
+	private String aeropuertodestino;
 	private Date fecha_salida;
 	private double precio_unitario;
 	private int asientos_disponibles;
-	private List<Reserva> reservas;
-		
-	public VueloDTO(Date fecha_salida, double precio_unitario, int asientos_disponibles,
-			List<Reserva> reservas) {
-		super();
-		this.fecha_salida = fecha_salida;
-		this.precio_unitario = precio_unitario;
-		this.asientos_disponibles = asientos_disponibles;
-		this.reservas = reservas;
-	}
 		
 	public VueloDTO() {
-		super();
-
+		
 	}
 		
 	public Date getFecha_salida() {
@@ -54,21 +46,27 @@ public class VueloDTO implements Serializable{
 		this.asientos_disponibles = asientos_disponibles;
 	}
 
-	public List<Reserva> getReservas() {
-		return reservas;
+	public String getCodigovuelo() {
+		return codigovuelo;
 	}
 
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
+	public void setCodigovuelo(String codigovuelo) {
+		this.codigovuelo = codigovuelo;
 	}
 
-	public void getVuelo() {
-		// TODO - implement Vuelo.getVuelo
-		throw new UnsupportedOperationException();
+	public String getAeropuertoorigen() {
+		return aeropuertoorigen;
 	}
 
-	public void busquedaVuelos() {
-		// TODO - implement Vuelo.busquedaVuelos
-		throw new UnsupportedOperationException();
+	public void setAeropuertoorigen(String aeropuertoorigen) {
+		this.aeropuertoorigen = aeropuertoorigen;
+	}
+
+	public String getAeropuertodestino() {
+		return aeropuertodestino;
+	}
+
+	public void setAeropuertodestino(String aeropuertodestino) {
+		this.aeropuertodestino = aeropuertodestino;
 	}
 }

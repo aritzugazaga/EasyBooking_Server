@@ -8,6 +8,9 @@ import javax.jdo.annotations.*;
 public class Vuelo {
 	
 	//NOTA: Falta la fecha de llegada.
+	private String codigovuelo;
+	private String aeropuertoorigen;
+	private String aeropuertodestino;
 	private Date fecha_salida;
 	private double precio_unitario;
 	private int asientos_disponibles;
@@ -19,9 +22,12 @@ public class Vuelo {
 
 	//NOTA: No es necesario constructor. Usad el que se genera por defecto sin parámetros
 	//y luego los métodos SET.
-	public Vuelo(Date fecha_salida, double precio_unitario, int asientos_disponibles,
+	public Vuelo(String codigovuelo, String aeropuertoorigen, String aeropuertodestino, Date fecha_salida, double precio_unitario, int asientos_disponibles,
 			List<Reserva> reservas) {
 		super();
+		this.codigovuelo = codigovuelo;
+		this.aeropuertoorigen = aeropuertoorigen;
+		this.aeropuertodestino = aeropuertodestino;
 		this.fecha_salida = fecha_salida;
 		this.precio_unitario = precio_unitario;
 		this.asientos_disponibles = asientos_disponibles;
@@ -73,6 +79,30 @@ public class Vuelo {
 	public void busquedaVuelos() {
 		// TODO - implement Vuelo.busquedaVuelos
 		throw new UnsupportedOperationException();
+	}
+
+	public String getCodigovuelo() {
+		return codigovuelo;
+	}
+
+	public void setCodigovuelo(String codigovuelo) {
+		this.codigovuelo = codigovuelo;
+	}
+
+	public String getAeropuertoorigen() {
+		return aeropuertoorigen;
+	}
+
+	public void setAeropuertoorigen(String aeropuertoorigen) {
+		this.aeropuertoorigen = aeropuertoorigen;
+	}
+
+	public String getAeropuertodestino() {
+		return aeropuertodestino;
+	}
+
+	public void setAeropuertodestino(String aeropuertodestino) {
+		this.aeropuertodestino = aeropuertodestino;
 	}
 
 }

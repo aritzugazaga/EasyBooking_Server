@@ -10,21 +10,10 @@ public class UsuarioDTO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String nombre;
 	private String email;
-	private boolean is_prime;
-	private List<Reserva> reservas;
-
-	//NOTA: Falta el aeropuerto por defecto, el sistema de autorización
-	
-	public UsuarioDTO(String email, boolean is_prime, List<Reserva> reservas) {
-		super();
-		this.email = email;
-		this.is_prime = is_prime;
-		this.reservas = reservas;
-	}
 	
 	public UsuarioDTO() {
-		super();
 
 	}
 
@@ -36,39 +25,11 @@ public class UsuarioDTO implements Serializable{
 		this.email = email;
 	}
 
-	public boolean isIs_prime() {
-		return is_prime;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setIs_prime(boolean is_prime) {
-		this.is_prime = is_prime;
-	}
-
-	public List<Reserva> getReservas() {
-		return reservas;
-	}
-
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
-	}
-
-	public void registrarUsuario() {
-		// TODO - implement Usuario.registrarUsuario
-		throw new UnsupportedOperationException();
-	}
-
-	public void getUsuario() {
-		// TODO - implement Usuario.getUsuario
-		throw new UnsupportedOperationException();
-	}
-
-	public void borrarUsuario() {
-		// TODO - implement Usuario.borrarUsuario
-		throw new UnsupportedOperationException();
-	}
-
-	public void iniciarSesion() {
-		// TODO - implement Usuario.iniciarSesion
-		throw new UnsupportedOperationException();
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }

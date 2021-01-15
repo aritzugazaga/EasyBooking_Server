@@ -3,17 +3,19 @@ package domainObjects;
 import java.util.List;
 import javax.jdo.annotations.PersistenceCapable;
 
+@SuppressWarnings("unused")
 @PersistenceCapable
 public class Usuario {
-
+	private String nombre;
 	private String email;
 	private boolean is_prime;
 	private List<Reserva> reservas;
 
 	//NOTA: Falta el aeropuerto por defecto, el sistema de autorización
 	
-	public Usuario(String email, boolean is_prime, List<Reserva> reservas) {
+	public Usuario(String nombre, String email, boolean is_prime, List<Reserva> reservas) {
 		super();
+		this.nombre = nombre;
 		this.email = email;
 		this.is_prime = is_prime;
 		this.reservas = reservas;
@@ -22,6 +24,14 @@ public class Usuario {
 	public Usuario() {
 		super();
 
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getEmail() {

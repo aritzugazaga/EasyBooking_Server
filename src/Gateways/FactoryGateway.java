@@ -1,57 +1,50 @@
 package Gateways;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FactoryGateway {
-	private static FactoryGateway instance = new FactoryGateway();
-
-	private FactoryGateway() {
+	
+	private ArrayList<IGatewayAerolinea> gatewaysaerolineas;
+	private TotalAerolineas totalaerolineas;
+	
+	public ArrayList<IGatewayAerolinea> getgatewaysaerolineas() {
+		return gatewaysaerolineas;
 	}
 
-	public static FactoryGateway getInstance() {
-		return instance;
+	public  FactoryGateway() {
+		// TODO Auto-generated constructor stub
+		totalaerolineas = new TotalAerolineas();
+		totalaerolineas.cargaraerolineas();
+		gatewaysaerolineas = new ArrayList<IGatewayAerolinea>();
+		initializeGateways();
 	}
-
-	public IGatewayAerolinea creargatewayaerolinea(String type) {
-		if (type == null) {
-			return null;
+	
+	public void initializeGateways() {
+		for (String e : totalaerolineas.getcodigoaerolineas()) {
+			switch (e) {
+				case "Iberia":
+					initializeIberia();
+					break;
+					
+				case "Vueling":
+					initializeRyanAir();
+					break;
+		
+				default:
+					throw new IllegalArgumentException("Unexpected value: " + e);
+			}
 		}
-
-		if (type.equalsIgnoreCase("VUELING")) {
-			return new GatewayVueling();
-		} else if (type.equalsIgnoreCase("IBERIA")) {
-			return new GatewayIberia();
-		} else {
-			return null;
-		}
-
+		
 	}
-
-	public IGatewayLogin craergatewaylogin(String type) {
-		if (type == null) {
-			return null;
-		}
-
-		if (type.equalsIgnoreCase("GOOGLE")) {
-			return new GatewayGoogle();
-		} else if (type.equalsIgnoreCase("FACEBOOK")) {
-			return new GatewayFacebook();
-		} else {
-			return null;
-		}
-
+	
+	private void initializeIberia() {
+		GatewayIberia iberia = new GatewayIberia();
+		gatewaysaerolineas.add(iberia);
 	}
-
-	public IGatewayPago creargatewaypago(String type) {
-		if (type == null) {
-			return null;
-		}
-
-		if (type.equalsIgnoreCase("VISA")) {
-			return new GatewayTarjetaCredito();
-		} else if (type.equalsIgnoreCase("PAYPAL")) {
-			return new GatewayPaypal();
-		} else {
-			return null;
-		}
-
+	
+	private void initializeRyanAir() {
+		GatewayVueling vueling = new GatewayVueling();
+		gatewaysaerolineas.add(vueling);
 	}
 }
