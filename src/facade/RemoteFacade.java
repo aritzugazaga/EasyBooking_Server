@@ -3,10 +3,12 @@ package facade;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import DTO.UsuarioDTO;
 import DTO.VueloDTO;
+import Services.AerolineaService;
 import Services.LoginService;
 import domainObjects.Usuario;
 
@@ -39,10 +41,11 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade{
 		return usuario != null;
 	}
 	
+	@Override
 	public void registrarUsuario(String aEmail, String aPassword) {
 		// TODO Auto-generated method stub
 		System.out.println(" *RemoteFacade register: " + aEmail + "/" + aPassword);
-		Usuario usuario = LoginService.getInstance().registro(aEmail, aPassword);
+		LoginService.getInstance().registro(aEmail, aPassword);
 		
 	}
 
@@ -56,6 +59,19 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade{
 	public String hacerReserva() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<VueloDTO> getVuelos(String aeropuertoOrigen, String aeropuertoDestino, Date salida)
+			throws RemoteException {
+		System.out.println(" * RemoteFacade getVuelos: ");
+		return AerolineaService.getInstance().getFlights();
+	}
+
+	@Override
+	public boolean hacerReserva(VueloDTO vuelo, String email, boolean paymentmethod) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	

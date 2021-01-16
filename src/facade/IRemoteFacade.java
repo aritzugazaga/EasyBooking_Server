@@ -3,6 +3,7 @@ package facade;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import DTO.UsuarioDTO;
@@ -17,5 +18,6 @@ public interface IRemoteFacade extends Remote{
 	String hacerReserva() throws RemoteException;
 	//
 	public void registrarUsuario(String aEmail, String aPassword);
-
+	public List<VueloDTO> getVuelos(String aeropuertoOrigen, String aeropuertoDestino, Date salida) throws RemoteException;
+	public boolean hacerReserva(VueloDTO vuelo, String email, boolean paymentmethod) throws RemoteException;
 }
