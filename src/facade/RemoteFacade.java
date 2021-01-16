@@ -66,6 +66,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade{
 			throws RemoteException {
 		System.out.println(" * RemoteFacade getVuelos: ");
 		return AerolineaService.getInstance().getFlights();
+		
 	}
 
 	@Override
