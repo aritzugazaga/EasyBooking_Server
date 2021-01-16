@@ -222,5 +222,61 @@ public class DB {
 
 		return usuarios;
 	}
-	
+	private void initializeData() {
+		System.out.println(" * Initializing data base");
+		//Create Sample data
+		Usuario usuario0 = new Usuario();
+		usuario0.setEmail("Iker.01@gmail.com");
+		usuario0.setNombre("Iker");
+		
+						
+		Usuario usuario1 = new Usuario();
+		usuario1.setEmail("Anagu@gmail.com");
+		usuario1.setNombre("Ana");
+		
+		Usuario usuario2 = new Usuario();
+		usuario2.setEmail("Mikelgl@gmail.com");
+		usuario2.setNombre("Mikel");
+		
+		
+		Vuelo Italia = new Vuelo();
+		Italia.setCodigovuelo("112");
+		Italia.setAeropuertoorigen("Bilbao");
+		Italia.setAeropuertodestino("Italia");
+		Italia.setFecha_salida("2020-02-22");
+		Italia.setPrecio_unitario(50.00);
+		Italia.setAsientos_disponibles(2);
+		
+		Vuelo Brasil = new Vuelo();
+		Brasil.setCodigovuelo("113");
+		Brasil.setAeropuertoorigen("Bilbao");
+		Brasil.setAeropuertodestino("Brasil");
+		Brasil.setFecha_salida("2020/07/22");
+		Brasil.setPrecio_unitario(70.30);
+		Brasil.setAsientos_disponibles(7);
+		
+		
+		Vuelo China = new Vuelo();
+		China.setCodigovuelo("114");
+		China.setAeropuertoorigen("Brasil");
+		China.setAeropuertodestino("China");
+		China.setFecha_salida("2021/02/22");
+		China.setPrecio_unitario(199.30);
+		China.setAsientos_disponibles(4);
+		
+		
+		usuario2.addVuelo("Brasil");
+		usuario2.addVuelo("China");
+		usuario1.addVuelo("Brasil");
+		usuario0.addVuelo("Italia");
+		try {
+			//Store users in DB
+			DB.getInstance().store(usuario0);
+			DB.getInstance().store(usuario1);
+			DB.getInstance().store(usuario2);
+		} catch (Exception ex) {
+			System.out.println(" $ Error initializing data: " + ex.getMessage());
+			ex.printStackTrace();
+		}
+	}
 }
