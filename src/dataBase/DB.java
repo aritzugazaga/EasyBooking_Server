@@ -89,7 +89,7 @@ public class DB {
 		}
 	}
 	
-	public void store(Usuario usuario) {
+	public static void store(Usuario usuario) {
 		DB.getInstance().storeObjectInDB(usuario);	
 	}
 	

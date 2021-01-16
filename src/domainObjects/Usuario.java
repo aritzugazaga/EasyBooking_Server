@@ -10,6 +10,7 @@ public class Usuario {
 	private String email;
 	private boolean is_prime;
 	private List<Reserva> reservas;
+	private String autorizacion;
 
 	//NOTA: Falta el aeropuerto por defecto, el sistema de autorización
 	
@@ -24,6 +25,11 @@ public class Usuario {
 	public Usuario() {
 		super();
 
+	}
+	
+	public Usuario(String email, String autorizacion) {
+		this.email = email;
+		this.autorizacion = autorizacion;
 	}
 	
 	public String getNombre() {
@@ -56,6 +62,20 @@ public class Usuario {
 
 	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
+	}
+	
+	
+	
+	public String getAutorizacion() {
+		return autorizacion;
+	}
+
+	public void setAutorizacion(String autorizacion) {
+		this.autorizacion = autorizacion;
+	}
+
+	public boolean checkPassword(String password) {
+		return this.autorizacion.equals(password);
 	}
 
 	public void registrarUsuario() {

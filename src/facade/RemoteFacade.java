@@ -38,6 +38,13 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade{
 		Usuario usuario = LoginService.getInstance().login(aEmail, aPassword);
 		return usuario != null;
 	}
+	
+	public void registrarUsuario(String aEmail, String aPassword) {
+		// TODO Auto-generated method stub
+		System.out.println(" *RemoteFacade register: " + aEmail + "/" + aPassword);
+		Usuario usuario = LoginService.getInstance().registro(aEmail, aPassword);
+		
+	}
 
 	@Override
 	public ArrayList<VueloDTO> getVuelos() throws RemoteException {
@@ -51,13 +58,8 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade{
 		return null;
 	}
 
-	@Override
-	public void registrarUsuario(String aEmail, String aPassword) {
-		// TODO Auto-generated method stub
-		System.out.println(" *RemoteFacade register: " + aEmail + "/" + aPassword);
-		Usuario usuario = LoginService.getInstance().register(aEmail, aPassword);
-		
-	}
+	
+	
 
 	
 
