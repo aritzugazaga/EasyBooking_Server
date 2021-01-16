@@ -1,5 +1,7 @@
 package DTO;
 
+import domainObjects.Usuario;
+
 public class UsuarioAssembler {
 	private static UsuarioAssembler instance;
 	
@@ -13,4 +15,12 @@ public class UsuarioAssembler {
 		return instance;
 	}
 	
+	public UsuarioDTO entityToDTO(Usuario usuario) {
+		UsuarioDTO dto = new UsuarioDTO();
+		
+		dto.setEmail(usuario.getEmail());
+		dto.setNombre(usuario.getNombre());
+		
+		return dto;
+	}
 }
