@@ -21,22 +21,26 @@ public class LoginService {
 	}
 
 	public Usuario login(String email, String password) {
-	/*	Usuario usuario = DB.getInstance().getUser(email);
+		Usuario usuario = DB.getInstance().getUsuario(email);
 		
-		if(usuario!= null && usuario.chekPassword(password)) {
+		if(usuario!= null && usuario.checkPassword(password)) {
 			return usuario;
 		}else {
 			return null;
-		}*/Usuario us = new Usuario();
-		return us;
+		}
+		
 	}
 	
-	public void registro(String email, String password) {
-		Usuario user = DB.getInstance().getUser(email);
+	public Usuario registro(String email, String password) {
+		Usuario usuario = DB.getInstance().getUsuario(email);
 		
-		if(user == null) {
+		
+		if(usuario == null) {
 			DB.store(new Usuario(email, password));
+			
 		}
+		
+		return usuario;
 
 	}
 }
