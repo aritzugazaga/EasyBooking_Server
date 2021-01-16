@@ -28,7 +28,7 @@ public class FactoryGateway {
 					break;
 					
 				case "Vueling":
-					initializeRyanAir();
+					initializeVueling();
 					break;
 		
 				default:
@@ -43,7 +43,7 @@ public class FactoryGateway {
 		gatewaysaerolineas.add(iberia);
 	}
 	
-	private void initializeRyanAir() {
+	private void initializeVueling() {
 		GatewayVueling vueling = new GatewayVueling();
 		gatewaysaerolineas.add(vueling);
 	}
