@@ -15,4 +15,7 @@ public interface IRemoteFacade extends Remote{
 	//public boolean makeBid(long aArticle, float aBid) throws RemoteException;
 	ArrayList <VueloDTO> getVuelos() throws RemoteException;
 	String hacerReserva() throws RemoteException;
+	//
+	public void registrarUsuario(String aEmail, String aPassword);
+
 }

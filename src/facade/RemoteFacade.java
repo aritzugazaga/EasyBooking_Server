@@ -7,6 +7,7 @@ import java.util.List;
 
 import DTO.UsuarioDTO;
 import DTO.VueloDTO;
+import Services.LoginService;
 import domainObjects.Usuario;
 
 public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade{
@@ -48,6 +49,14 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade{
 	public String hacerReserva() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void registrarUsuario(String aEmail, String aPassword) {
+		// TODO Auto-generated method stub
+		System.out.println(" *RemoteFacade register: " + aEmail + "/" + aPassword);
+		Usuario usuario = LoginService.getInstance().register(aEmail, aPassword);
+		
 	}
 
 	
