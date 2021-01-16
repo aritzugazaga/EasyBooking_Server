@@ -3,7 +3,6 @@ package domainObjects;
 import java.util.List;
 import javax.jdo.annotations.PersistenceCapable;
 
-@SuppressWarnings("unused")
 @PersistenceCapable
 public class Usuario {
 	private String nombre;
