@@ -19,10 +19,10 @@ public class IReservaService {
 		aerolineas = factory.getgatewaysaerolineas();	
 	}
 	
-	public List<VueloDTO> buscarVuelo(String aeropuertodestino, String aeropuertoorigen, String fecha_salida, int asientos_disponibles) throws RemoteException{
+	public List<VueloDTO> buscarVuelo(String aeropuertodestino, String aeropuertoorigen) throws RemoteException{
 		List<VueloDTO> vuelo = new ArrayList<VueloDTO>();
 		for(IGatewayAerolinea aerolinea : aerolineas) {
-			VueloDTO v = aerolinea.busquedavuelo(aeropuertodestino, aeropuertoorigen, fecha_salida, asientos_disponibles);
+			VueloDTO v = aerolinea.busquedavuelo(aeropuertodestino, aeropuertoorigen);
 			if(v != null) {
 				vuelo.add(v);
 			}
@@ -37,7 +37,7 @@ public class IReservaService {
 		return null;
 	}
 	
-	public boolean reservavuelo(String codigovuelo, String nombre, int plazas) throws RemoteException{
+	public boolean reservaVuelo(String codigovuelo, String nombre, int plazas) throws RemoteException{
 		for(IGatewayAerolinea aerolinea : aerolineas) {
 			if(aerolinea.reservavuelo(codigovuelo, nombre, plazas) == true) return true;
 		}

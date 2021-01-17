@@ -5,10 +5,13 @@ import java.rmi.RemoteException;
 import DTO.VueloDTO;
 
 public class GatewayIberia implements IGatewayAerolinea {
-
+	
+	private String IP;
+	private int puerto;
+	private String server;
+	
 	@Override
-	public VueloDTO busquedavuelo(String aeropuertodestino, String aeropuertoorigen, String fecha_salida,
-			int asientos_disponibles) throws RemoteException {
+	public VueloDTO busquedavuelo(String aeropuertodestino, String aeropuertoorigen) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
