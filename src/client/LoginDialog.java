@@ -16,8 +16,8 @@ import javax.swing.JPasswordField;
 public class LoginDialog {
 
 	private JFrame frmEasyBooking;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField email;
+	private JPasswordField contraseña;
 
 	/**
 	 * Launch the application.
@@ -55,36 +55,42 @@ public class LoginDialog {
 		frmEasyBooking.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmEasyBooking.getContentPane().setLayout(null);
 		
-		textField = new JTextField();
-		textField.setToolTipText("");
-		textField.setForeground(Color.WHITE);
-		textField.setBounds(116, 77, 189, 20);
-		frmEasyBooking.getContentPane().add(textField);
-		textField.setColumns(10);
+		email = new JTextField();
+		email.setToolTipText("");
+		email.setForeground(Color.WHITE);
+		email.setBounds(116, 77, 189, 20);
+		frmEasyBooking.getContentPane().add(email);
+		email.setColumns(10);
 		
 		JButton btnIniciarSesion = new JButton("Iniciar Sesi\u00F3n");
 		btnIniciarSesion.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				LoginController.getInstance().login(email.toString(), contraseña.toString());
 			}
 		});
 		btnIniciarSesion.setBounds(226, 180, 110, 25);
 		frmEasyBooking.getContentPane().add(btnIniciarSesion);
 		
-		JButton btnNewButton_1 = new JButton("Registrase");
-		btnNewButton_1.setForeground(new Color(0, 0, 0));
-		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnNewButton_1.setBounds(96, 180, 110, 25);
-		frmEasyBooking.getContentPane().add(btnNewButton_1);
+		JButton btnRegistrarse = new JButton("Registrase");
+		btnRegistrarse.setForeground(new Color(0, 0, 0));
+		btnRegistrarse.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnRegistrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				LoginController.getInstance().register(email.toString(), contraseña.toString());
+			}
+		});
+		btnRegistrarse.setBounds(96, 180, 110, 25);
+		frmEasyBooking.getContentPane().add(btnRegistrarse);
 		
-		JLabel lblNewLabel = new JLabel("Easy Booking");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 14));
-		lblNewLabel.setBounds(137, 27, 136, 23);
-		frmEasyBooking.getContentPane().add(lblNewLabel);
+		JLabel lblEasyBooking = new JLabel("Easy Booking");
+		lblEasyBooking.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEasyBooking.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		lblEasyBooking.setBounds(137, 27, 136, 23);
+		frmEasyBooking.getContentPane().add(lblEasyBooking);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(116, 127, 189, 20);
-		frmEasyBooking.getContentPane().add(passwordField);
+		contraseña = new JPasswordField();
+		contraseña.setBounds(116, 127, 189, 20);
+		frmEasyBooking.getContentPane().add(contraseña);
 	}
 }
