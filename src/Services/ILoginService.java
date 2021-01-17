@@ -21,8 +21,8 @@ public class ILoginService {
 		return logins.get(0).login(email, contrasenya);
 	}
 	
-	public void registrar(String email, String contrasenya) throws RemoteException{
-		logins.get(0).registrar(email, contrasenya);
+	public boolean registrar(String email, String contrasenya) throws RemoteException{
+		return logins.get(0).registrar(email, contrasenya);
 		
 	}
 }

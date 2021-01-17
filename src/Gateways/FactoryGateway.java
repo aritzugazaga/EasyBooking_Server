@@ -6,6 +6,8 @@ import java.util.List;
 public class FactoryGateway {
 	
 	private ArrayList<IGatewayAerolinea> gatewaysaerolineas;
+	private ArrayList<IGatewayPago> gatewayspago;
+	private ArrayList<IGatewayLogin> gatewayslogin;
 	private TotalAerolineas totalaerolineas;
 	
 	public ArrayList<IGatewayAerolinea> getgatewaysaerolineas() {
@@ -17,10 +19,13 @@ public class FactoryGateway {
 		totalaerolineas = new TotalAerolineas();
 		totalaerolineas.cargaraerolineas();
 		gatewaysaerolineas = new ArrayList<IGatewayAerolinea>();
-		initializeGateways();
+		gatewayspago = new ArrayList<IGatewayPago>();
+		initializeGatewaysaerolinea();
+		initializegatewaylogin();
+		initializegatewaypago();
 	}
 	
-	public void initializeGateways() {
+	public void initializeGatewaysaerolinea() {
 		for (String e : totalaerolineas.getcodigoaerolineas()) {
 			switch (e) {
 				case "Iberia":
@@ -37,7 +42,12 @@ public class FactoryGateway {
 		}
 		
 	}
-	
+	public void initializegatewaypago() {
+		initializePaypal();
+	}
+	public void initializegatewaylogin() {
+		initializeGoogle();
+	}
 	private void initializeIberia() {
 		GatewayIberia iberia = new GatewayIberia();
 		gatewaysaerolineas.add(iberia);
@@ -46,5 +56,13 @@ public class FactoryGateway {
 	private void initializeVueling() {
 		GatewayVueling vueling = new GatewayVueling();
 		gatewaysaerolineas.add(vueling);
+	}
+	private void initializePaypal() {
+		GatewayPaypal paypal = new GatewayPaypal();
+		gatewayspago.add(paypal);
+	}
+	private void initializeGoogle() {
+		GatewayGoogle google = new GatewayGoogle();
+		gatewayslogin.add(google);
 	}
 }
