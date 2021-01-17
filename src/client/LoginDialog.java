@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JPasswordField;
@@ -66,7 +67,11 @@ public class LoginDialog {
 		btnIniciarSesion.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LoginController.getInstance().login(email.toString(), contraseña.toString());
+				try {
+					LoginController.getInstance().login(email.toString(), contraseña.toString());
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		btnIniciarSesion.setBounds(226, 180, 110, 25);
@@ -77,7 +82,11 @@ public class LoginDialog {
 		btnRegistrarse.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LoginController.getInstance().register(email.toString(), contraseña.toString());
+				try {
+					LoginController.getInstance().register(email.toString(), contraseña.toString());
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		btnRegistrarse.setBounds(96, 180, 110, 25);

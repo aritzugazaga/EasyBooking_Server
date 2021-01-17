@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import domainObjects.Aeropuerto;
+
 public class BookingWindow {
 
 	private JFrame frame;
@@ -51,7 +53,7 @@ public class BookingWindow {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<Aeropuerto> comboBox = new JComboBox<Aeropuerto>();
 		comboBox.setBounds(10, 79, 102, 20);
 		panel.add(comboBox);
 		
@@ -70,7 +72,7 @@ public class BookingWindow {
 		lblNewLabel_1_1.setBounds(10, 110, 115, 14);
 		panel.add(lblNewLabel_1_1);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox<Aeropuerto> comboBox_1 = new JComboBox<Aeropuerto>();
 		comboBox_1.setBounds(10, 135, 102, 20);
 		panel.add(comboBox_1);
 		

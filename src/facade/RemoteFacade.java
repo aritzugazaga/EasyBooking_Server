@@ -42,10 +42,11 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade{
 	}
 	
 	@Override
-	public void registrarUsuario(String aEmail, String aPassword) {
+	public boolean registrarUsuario(String aEmail, String aPassword) {
 		// TODO Auto-generated method stub
 		System.out.println(" *RemoteFacade register: " + aEmail + "/" + aPassword);
-		LoginService.getInstance().registro(aEmail, aPassword);
+		Usuario usuario = LoginService.getInstance().registro(aEmail, aPassword);
+		return usuario != null;
 		
 	}
 
