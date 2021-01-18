@@ -30,13 +30,6 @@ public class IReservaService {
 		return vuelos;
 	}
 	
-	public VueloDTO getVuelo(String codigovuelo) throws RemoteException{
-		for(IGatewayAerolinea aerolinea : aerolineas) {
-			if(aerolinea.getvuelo(codigovuelo) != null) return aerolinea.getvuelo(codigovuelo);
-		}
-		return null;
-	}
-	
 	public boolean reservaVuelo(String codigovuelo, String nombre, int plazas) throws RemoteException{
 		for(IGatewayAerolinea aerolinea : aerolineas) {
 			if(aerolinea.reservavuelo(codigovuelo, nombre, plazas) == true) return true;
