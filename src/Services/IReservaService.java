@@ -20,14 +20,14 @@ public class IReservaService {
 	}
 	
 	public List<VueloDTO> buscarVuelo(String aeropuertodestino, String aeropuertoorigen) throws RemoteException{
-		List<VueloDTO> vuelo = new ArrayList<VueloDTO>();
+		List<VueloDTO> vuelos = new ArrayList<VueloDTO>();
 		for(IGatewayAerolinea aerolinea : aerolineas) {
-			VueloDTO v = aerolinea.busquedavuelo(aeropuertodestino, aeropuertoorigen);
-			if(v != null) {
-				vuelo.add(v);
+			List<VueloDTO> flights = aerolinea.busquedavuelo(aeropuertodestino, aeropuertoorigen);
+			for(VueloDTO v : flights) {
+				vuelos.add(v);
 			}
 		}
-		return vuelo;
+		return vuelos;
 	}
 	
 	public VueloDTO getVuelo(String codigovuelo) throws RemoteException{

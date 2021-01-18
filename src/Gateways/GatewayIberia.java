@@ -1,6 +1,7 @@
 package Gateways;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 import DTO.VueloDTO;
 
@@ -11,7 +12,7 @@ public class GatewayIberia implements IGatewayAerolinea {
 	private String server;
 	
 	@Override
-	public VueloDTO busquedavuelo(String aeropuertodestino, String aeropuertoorigen) throws RemoteException {
+	public List<VueloDTO> busquedavuelo(String aeropuertodestino, String aeropuertoorigen) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

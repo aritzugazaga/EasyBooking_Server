@@ -1,13 +1,14 @@
 package Gateways;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 import DTO.VueloDTO;
 
 public class GatewayVueling implements IGatewayAerolinea {
 
 	@Override
-	public VueloDTO busquedavuelo(String aeropuertodestino, String aeropuertoorigen) throws RemoteException {
+	public List<VueloDTO> busquedavuelo(String aeropuertodestino, String aeropuertoorigen) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
