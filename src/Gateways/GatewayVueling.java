@@ -31,7 +31,9 @@ public class GatewayVueling implements IGatewayAerolinea {
 		}
 	}
 
+	
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<VueloDTO> busquedavuelo(String aeropuertodestino, String aeropuertoorigen) throws RemoteException {
 		// TODO Auto-generated method stub
 		String datos = aeropuertodestino + "," + aeropuertoorigen;

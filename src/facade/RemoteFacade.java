@@ -2,18 +2,15 @@ package facade;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import DTO.UsuarioDTO;
 import DTO.VueloDTO;
-import Services.AerolineaService;
 import Services.LoginService;
-import domainObjects.Usuario;
+import Services.ReservaService;
 
 public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade{
 	
+	private static final long serialVersionUID = 1L;
 	private static RemoteFacade instance;
 	
 
@@ -37,48 +34,27 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade{
 	@Override
 	public boolean login(String aEmail, String aPassword) throws RemoteException {
 		System.out.println(" *RemoteFacade login: " + aEmail + "/" + aPassword);
-		Usuario usuario = LoginService.getInstance().login(aEmail, aPassword);
-		return usuario != null;
+		return LoginService.getInstance().login(aEmail, aPassword);
 	}
 	
 	@Override
-	public boolean registrarUsuario(String aEmail, String aPassword) {
+	public boolean registrarUsuario(String aEmail, String aPassword) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println(" *RemoteFacade register: " + aEmail + "/" + aPassword);
-		Usuario usuario = LoginService.getInstance().registro(aEmail, aPassword);
-		return usuario != null;
+		return LoginService.getInstance().registrar(aEmail, aPassword);
 		
 	}
 
 	@Override
-	public ArrayList<VueloDTO> getVuelos() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String hacerReserva() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<VueloDTO> getVuelos(String aeropuertoOrigen, String aeropuertoDestino, Date salida)
-			throws RemoteException {
+	public List<VueloDTO> getVuelos(String aeropuertoOrigen, String aeropuertoDestino) throws RemoteException {
 		System.out.println(" * RemoteFacade getVuelos: ");
-		return AerolineaService.getInstance().getFlights();
+		return ReservaService.getInstance().buscarVuelo(aeropuertoOrigen, aeropuertoDestino);
 		
 	}
 
 	@Override
 	public boolean hacerReserva(VueloDTO vuelo, String email, boolean paymentmethod) throws RemoteException {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
-	
-	
-
-	
 
 }

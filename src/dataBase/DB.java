@@ -1,7 +1,7 @@
 package dataBase;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Date;
 import java.util.List;
 
 import javax.jdo.Extent;
@@ -11,7 +11,7 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
-import Services.LoginService;
+import DTO.VueloDTO;
 import domainObjects.Pago;
 import domainObjects.Reserva;
 import domainObjects.Usuario;
@@ -19,8 +19,8 @@ import domainObjects.Vuelo;
 
 public class DB {
 	private PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-	private PersistenceManager pm = pmf.getPersistenceManager();				
-	private Transaction transaction = pm.currentTransaction();
+	//private PersistenceManager pm = pmf.getPersistenceManager();				
+	//private Transaction transaction = pm.currentTransaction();
 	private static DB instance;
 	
 	
@@ -222,6 +222,8 @@ public class DB {
 
 		return usuarios;
 	}
+
+	@SuppressWarnings({ "unused", "deprecation" })
 	private void initializeData() {
 		System.out.println(" * Initializing data base");
 		//Create Sample data
@@ -238,42 +240,55 @@ public class DB {
 		usuario2.setEmail("Mikelgl@gmail.com");
 		usuario2.setNombre("Mikel");
 		
+		ArrayList<VueloDTO> vuelos = new ArrayList<VueloDTO>();
 		
-		Vuelo Italia = new Vuelo();
+		String fechaB = new String("08-12-2020");
+		
+		Date fecha = new Date(fechaB);
+		
+		VueloDTO Italia = new VueloDTO();
 		Italia.setCodigovuelo("112");
 		Italia.setAeropuertoorigen("Bilbao");
 		Italia.setAeropuertodestino("Italia");
-		Italia.setFecha_salida("2020-02-22");
+		Italia.setFecha_salida(fecha);
 		Italia.setPrecio_unitario(50.00);
 		Italia.setAsientos_disponibles(2);
 		
-		Vuelo Brasil = new Vuelo();
+		VueloDTO Brasil = new VueloDTO();
 		Brasil.setCodigovuelo("113");
 		Brasil.setAeropuertoorigen("Bilbao");
 		Brasil.setAeropuertodestino("Brasil");
-		Brasil.setFecha_salida("2020/07/22");
+		Brasil.setFecha_salida(fecha);
 		Brasil.setPrecio_unitario(70.30);
 		Brasil.setAsientos_disponibles(7);
 		
 		
-		Vuelo China = new Vuelo();
+		VueloDTO China = new VueloDTO();
 		China.setCodigovuelo("114");
 		China.setAeropuertoorigen("Brasil");
 		China.setAeropuertodestino("China");
-		China.setFecha_salida("2021/02/22");
+		China.setFecha_salida(fecha);
 		China.setPrecio_unitario(199.30);
 		China.setAsientos_disponibles(4);
 		
+		vuelos.add(Italia);
+		vuelos.add(Brasil);
+		vuelos.add(China);
 		
+		/*
 		usuario2.addVuelo("Brasil");
 		usuario2.addVuelo("China");
 		usuario1.addVuelo("Brasil");
 		usuario0.addVuelo("Italia");
+		*/
 		try {
+			DB.getInstance();
 			//Store users in DB
-			DB.getInstance().store(usuario0);
-			DB.getInstance().store(usuario1);
-			DB.getInstance().store(usuario2);
+			DB.store(usuario0);
+			DB.getInstance();
+			DB.store(usuario1);
+			DB.getInstance();
+			DB.store(usuario2);
 		} catch (Exception ex) {
 			System.out.println(" $ Error initializing data: " + ex.getMessage());
 			ex.printStackTrace();

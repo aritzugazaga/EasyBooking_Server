@@ -7,11 +7,11 @@ import java.util.List;
 import Gateways.GatewayPaypal;
 import Gateways.IGatewayPago;
 
-public class IPagoService{
+public class PagoService{
 	
 	private List<IGatewayPago> pagos;
 	
-	public IPagoService() {
+	public PagoService() {
 		pagos = new ArrayList<IGatewayPago>();
 		GatewayPaypal paypal = new GatewayPaypal();
 		pagos.add(0, paypal);

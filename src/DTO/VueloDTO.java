@@ -2,9 +2,6 @@ package DTO;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-
-import domainObjects.Reserva;
 
 public class VueloDTO implements Serializable{
 		/**

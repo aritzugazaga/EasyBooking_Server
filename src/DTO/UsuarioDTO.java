@@ -1,9 +1,6 @@
 package DTO;
 
 import java.io.Serializable;
-import java.util.List;
-
-import domainObjects.Reserva;
 
 public class UsuarioDTO implements Serializable{
 	/**

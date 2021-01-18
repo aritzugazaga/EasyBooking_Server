@@ -8,12 +8,13 @@ import DTO.VueloDTO;
 import Gateways.FactoryGateway;
 import Gateways.IGatewayAerolinea;
 
-public class IReservaService { 
+public class ReservaService { 
+	
+	private static ReservaService instance;
 	
 	private List<IGatewayAerolinea> aerolineas = new ArrayList<IGatewayAerolinea>();
 
-	
-	public IReservaService() {
+	public ReservaService() {
 		// TODO Auto-generated constructor stub
 		FactoryGateway factory = new FactoryGateway();
 		aerolineas = factory.getgatewaysaerolineas();	
@@ -35,5 +36,13 @@ public class IReservaService {
 			if(aerolinea.reservavuelo(codigovuelo, nombre, plazas) == true) return true;
 		}
 		return false;
+	}
+	
+	public static ReservaService getInstance() {
+		if (instance == null) {
+			instance = new ReservaService();
+		}
+
+		return instance;
 	}
 }
