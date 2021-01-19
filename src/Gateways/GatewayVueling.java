@@ -15,7 +15,6 @@ import DTO.VueloDTO;
 
 public class GatewayVueling implements IGatewayAerolinea {
 	
-	//
 	private String IP = "127.0.0.1";
 	private int puerto = 1024;
 	private Socket socket;

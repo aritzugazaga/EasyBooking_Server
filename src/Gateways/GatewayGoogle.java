@@ -13,7 +13,7 @@ public class GatewayGoogle implements IGatewayLogin {
 	
 	public GatewayGoogle() {
 		try {
-			String servidor = IP + "," + puerto + "," + server;
+			String servidor = "//" + IP + ":" + puerto + "/" + server;
 			google = (IGoogle) java.rmi.Naming.lookup(servidor);
 		}catch(Exception e) {
 			System.err.println("Excepcion:  " + e.getMessage());

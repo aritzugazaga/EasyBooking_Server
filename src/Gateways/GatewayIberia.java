@@ -16,7 +16,7 @@ public class GatewayIberia implements IGatewayAerolinea {
 	
 	public GatewayIberia() {
 		try {
-			String servidor = IP + "," + puerto + "," + server;
+			String servidor = "//" + IP + ":" + puerto + "/" + server;
 			iberia = (IIberia) java.rmi.Naming.lookup(servidor);
 		}catch(Exception e) {
 			System.err.println("Excepcion: " + e.getMessage());

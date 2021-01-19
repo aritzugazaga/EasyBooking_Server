@@ -13,7 +13,7 @@ public class GatewayPaypal implements IGatewayPago {
 	
 	public GatewayPaypal() {
 		try {
-			String servidor = IP + "," + puerto + "," + server;
+			String servidor = "//" + IP + ":" + puerto + "/" + server;
 			paypal = (IPaypal) java.rmi.Naming.lookup(servidor);
 		}catch(Exception e) {
 			System.err.println("Excepcion: " + e.getMessage());
