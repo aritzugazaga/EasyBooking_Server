@@ -57,4 +57,15 @@
             </fileset>
         </schematool>
 	</target>
+	<target name="6.build" description="Builds the project">
+	      <delete dir="${build.dir}"/>
+	      <mkdir dir="${build.dir}"/>
+	      <javac srcdir="${source.dir}" destdir="${build.dir}" classpathref="classpath" deprecation="true" fork="true" includeantruntime="no"/>
+	 </target>
+
+	 <target name="7.export" depends="6.build" description="Export classes into a .jar file">
+	        <delete dir="${dist.dir}"/>
+	        <mkdir dir="${dist.dir}"/>
+	        <jar destfile="${dist.dir}/${export.file}" basedir="${build.dir}" includes="*.class"/>
+	 </target>
 </project>
