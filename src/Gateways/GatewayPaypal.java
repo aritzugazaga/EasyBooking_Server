@@ -1,12 +1,13 @@
 package Gateways;
 
 import java.rmi.RemoteException;
+import server.remote.IPaypal;
 
 public class GatewayPaypal implements IGatewayPago {
 	
-	private String IP;
-	private int puerto;
-	private String server;
+	private String IP = "127.0.0.1";
+	private int puerto = 1099;
+	private String server = "Paypal";
 
 	@Override
 	public boolean pagar(int precio_unitario, String email, String codigo) throws RemoteException {
@@ -19,10 +20,10 @@ public class GatewayPaypal implements IGatewayPago {
 
 		try {
 			String servidor = IP + "," + puerto + "," + server;
-			IGatewayPago server = (IGatewayPago) java.rmi.Naming.lookup(servidor);
+			IPaypal paypal = (IPaypal) java.rmi.Naming.lookup(servidor);
 			
 			try {
-				pago = server.pagar(precio_unitario, email, codigo);
+				pago = paypal.pagar(precio_unitario, email, codigo);
 				if (pago) {
 					System.out.println("Los datos de pago son correctos");
 				}
@@ -51,10 +52,10 @@ public class GatewayPaypal implements IGatewayPago {
 
 		try {
 			String servidor = IP + "," + puerto + "," + server;
-			IGatewayPago server = (IGatewayPago) java.rmi.Naming.lookup(servidor);
+			IPaypal paypal = (IPaypal) java.rmi.Naming.lookup(servidor);
 			
 			try {
-				tienedinero = server.tienedinero(precio_unitario, email, codigo);
+				tienedinero = paypal.tienedinero(precio_unitario, email, codigo);
 				if (tienedinero) {
 					System.out.println("Hay fondos para pagar");
 				}

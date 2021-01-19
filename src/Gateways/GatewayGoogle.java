@@ -1,12 +1,13 @@
 package Gateways;
 
 import java.rmi.RemoteException;
+import server.remote.IGoogle;
 
 public class GatewayGoogle implements IGatewayLogin {
 	
-	private String IP;
-	private int puerto;
-	private String server;
+	private String IP = "127.0.0.1";
+	private int puerto = 1099;
+	private String server = "Google";
 	
 	@Override
 	public boolean registrar(String email, String contrasenya) throws RemoteException {
@@ -19,10 +20,10 @@ public class GatewayGoogle implements IGatewayLogin {
 
 		try {
 			String servidor = IP + "," + puerto + "," + server;
-			IGatewayLogin server = (IGatewayLogin) java.rmi.Naming.lookup(servidor);
+			IGoogle google = (IGoogle) java.rmi.Naming.lookup(servidor);
 			
 			try {
-				registro = server.login(email, contrasenya);
+				registro = google.login(email, contrasenya);
 				if (registro) {
 					System.out.println("Los datos del usuario son correctos, usuario registrado");
 				}
@@ -52,10 +53,10 @@ public class GatewayGoogle implements IGatewayLogin {
 
 		try {
 			String servidor = IP + "," + puerto + "," + server;
-			IGatewayLogin server = (IGatewayLogin) java.rmi.Naming.lookup(servidor);
+			IGoogle google = (IGoogle) java.rmi.Naming.lookup(servidor);
 			
 			try {
-				login = server.login(email, contrasenya);
+				login = google.login(email, contrasenya);
 				if (login) {
 					System.out.println("Los datos del usuario son correctos, login correcto");
 				}

@@ -10,7 +10,7 @@ public class GatewayIberia implements IGatewayAerolinea {
 	
 	private String IP;
 	private int puerto;
-	private String server;
+	private String nombreserver;
 	
 	@Override
 	public List<VueloDTO> busquedavuelo(String aeropuertodestino, String aeropuertoorigen) throws RemoteException {
@@ -22,7 +22,7 @@ public class GatewayIberia implements IGatewayAerolinea {
 		}
 
 		try {
-			String servidor = IP + "," + puerto + "," + server;
+			String servidor = IP + "," + puerto + "," + nombreserver;
 			IGatewayAerolinea server = (IGatewayAerolinea) java.rmi.Naming.lookup(servidor);
 			
 			try {
@@ -54,7 +54,7 @@ public class GatewayIberia implements IGatewayAerolinea {
 		}
 
 		try {
-			String servidor = IP + "," + puerto + "," + server;
+			String servidor = IP + "," + puerto + "," + nombreserver;
 			IGatewayAerolinea server = (IGatewayAerolinea) java.rmi.Naming.lookup(servidor);
 			
 			try {
