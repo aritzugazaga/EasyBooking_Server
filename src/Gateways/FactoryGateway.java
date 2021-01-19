@@ -14,7 +14,6 @@ public class FactoryGateway {
 	}
 
 	public  FactoryGateway() {
-		// TODO Auto-generated constructor stub
 		totalaerolineas = new TotalAerolineas();
 		totalaerolineas.cargaraerolineas();
 		gatewaysaerolineas = new ArrayList<IGatewayAerolinea>();
