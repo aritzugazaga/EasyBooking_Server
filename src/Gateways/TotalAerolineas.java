@@ -20,7 +20,7 @@ public class TotalAerolineas {
 		this.codigoaerolineas = codigos;
 	}
 	
-	public void añadircodigoaerolinea(String codigo) {
+	public void aniadircodigoaerolinea(String codigo) {
 		codigoaerolineas.add(codigo);
 		totalaerolineas += 1;
 	}
