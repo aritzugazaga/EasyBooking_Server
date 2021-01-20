@@ -2,6 +2,7 @@ package dataBase;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.jdo.Extent;
@@ -12,6 +13,7 @@ import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import DTO.VueloDTO;
+import domainObjects.Aeropuerto;
 import domainObjects.Pago;
 import domainObjects.Reserva;
 import domainObjects.Usuario;
@@ -23,6 +25,7 @@ public class DB {
 	private Transaction transaction = pm.currentTransaction();
 	private static DB instance;
 	
+	private HashMap<String, Aeropuerto> aeropuertos = new HashMap<String, Aeropuerto>();
 	
 	private DB() {
 		super();
@@ -96,7 +99,12 @@ public class DB {
 	public void store(Pago pago) {
 		DB.getInstance().storeObjectInDB(pago);	
 	}
-
+	
+	public void storeAeropuerto(String codigo, Aeropuerto aeropuerto) {
+		if(!aeropuertos.containsKey(codigo)) 
+			aeropuertos.put(codigo, aeropuerto);	
+	}
+	
 	public void store(Reserva reserva) {
 		DB.getInstance().storeObjectInDB(reserva);	
 	}
@@ -221,6 +229,10 @@ public class DB {
 		}
 
 		return usuarios;
+	}
+	
+	public Aeropuerto getAeropueto(String s) {
+		return aeropuertos.get(s);
 	}
 
 	@SuppressWarnings({ "unused", "deprecation" })

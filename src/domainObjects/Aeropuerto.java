@@ -1,23 +1,19 @@
 package domainObjects;
 public class Aeropuerto {
 
-	private int codigo_aeropuerto;
+	private String codigo_aeropuerto;
 	private String ciudad;
 	private int numero_puertas_embarque;
 	
-	//NOTA: No es necesario constructor. Usad el que se genera por defecto sin parámetros
-	//y luego los métodos SET.
-	public Aeropuerto(int codigo_aeropuerto, String ciudad, int numero_puertas_embarque) {
-		super();
-		this.codigo_aeropuerto = codigo_aeropuerto;
+	public Aeropuerto(String codigoAeropuertos, String ciudad) {
+		this.codigo_aeropuerto = codigoAeropuertos;
 		this.ciudad = ciudad;
-		this.numero_puertas_embarque = numero_puertas_embarque;
 	}
 	
-	public int getCodigo_aeropuerto() {
+	public String getCodigo_aeropuerto() {
 		return codigo_aeropuerto;
 	}
-	public void setCodigo_aeropuerto(int codigo_aeropuerto) {
+	public void setCodigo_aeropuerto(String codigo_aeropuerto) {
 		this.codigo_aeropuerto = codigo_aeropuerto;
 	}
 	public String getCiudad() {

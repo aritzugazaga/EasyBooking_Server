@@ -3,7 +3,9 @@
 
 
 import java.util.ArrayList;
+/*
 import java.util.Collection;
+
 import java.util.Date;
 import java.util.List;
 
@@ -166,4 +168,46 @@ public class Main {
 			System.err.println("* Exception: " + ex.getMessage());
 		}
 	}
+}
+*/
+
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import dataBase.DB;
+import domainObjects.Aeropuerto;
+import facade.IRemoteFacade;
+import facade.RemoteFacade;
+
+
+public class Main {
+	
+  public static void main(String[] args) throws RemoteException { 
+	  
+    	final String[] codigoAeropuertos = {"1","2","3","4"};
+    	final String[] ciudad = { "Bilbao","Barcelona", "Madrid", "Sevilla"};
+    	
+    	for(int i = 0; i < 4; i++) {
+    		Aeropuerto a = new Aeropuerto(codigoAeropuertos[i], ciudad[i]);
+    		a.setNumero_puertas_embarque(15);
+    		DB.getInstance().storeAeropuerto(codigoAeropuertos[i],a);
+    	}
+    	
+		if (args.length < 3) {
+			System.out.println("usage: java [policy] [codebase] server.Server [host] [port] [server]");
+			System.exit(0);
+		}
+
+		String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+
+		try {		
+			IRemoteFacade server = RemoteFacade.getInstance();
+			Naming.rebind(name, server);
+			System.out.println("* Server '" + name + "' active and waiting...");
+		} catch (Exception e) {
+			System.err.println("- Exception running the server: " + e.getMessage());
+			e.printStackTrace();
+		}
+    	
+    }
+
 }
