@@ -1,188 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
-<project basedir="." default="5.server-remote" name="EasyBooking">
-=======
-<project basedir="." default="run" name="EasyBooking_Server">
-    <!-- project directories -->
->>>>>>> df05c41bc62504a3c7ec2dedf0b4624e55da309d
-    <property name="src.dir" location="src"/>
-    <property name="bin.dir" location="bin"/>
-	<property name="lib.dir" location="lib"/>
-	<property name="dist.dir" location="dist"/>
-   	<property name="build.dir" location="bin"/>
-	<property name="resources.dir" location="resources"/>
-<<<<<<< HEAD
-	<property name="server.Name" value="EasyBooking"/>
-	<property name="rmiregistry.IP" value="127.0.0.1"/>
-	<property name="rmiregistry.port" value="1099"/> 
-	<property name="export.file" value="EasyBooking.jar"/>
-	<property name="policy.file" location="security/java.policy"/>	
-	
-    <path id="classpath">
-=======
-	
-	<property name="dist.dir" location="dist"/>
-	<property name="server.port" value="1099"/> 
-	<property name="server.IP" value="127.0.0.1"/>
-	<property name="server.Name" value="EasyBooking"/>
-	<property name="export.file" value="EasyBooking.jar"/>
-	<property name="policy.file" location="security/java.policy"/>	
-	
-    <!-- Classpath -->
-    <path id="full.classpath">
->>>>>>> df05c41bc62504a3c7ec2dedf0b4624e55da309d
-        <fileset dir="${lib.dir}">
-            <include name="**/*.jar"/>
-        </fileset>
-        <pathelement location="${bin.dir}"/>
-        <pathelement location="${resources.dir}"/>
-    </path>
-	
-<<<<<<< HEAD
-    <target name="1.compile" description="Builds the source code">
-    	<delete dir="${bin.dir}"/>
-    	<mkdir dir="${bin.dir}"/>
-    	<javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="classpath" includeantruntime="false" fork="true">
-=======
-	<target name="help">
-			<echo>Usage: ant [run | runserver]</echo>
-	</target>
-
-    <!-- TARGET : clean -->
-    <target name="clean">
-        <delete includeEmptyDirs="true" quiet="true">
-            <fileset dir="${bin.dir}" includes="**/*.*"/>
-        </delete>
-		<delete dir="${bin.dir}"/>
-    </target>
-
-    <!-- TARGET : prepare -->
-    <target name="prepare">
-        <mkdir dir="${bin.dir}"/>
-    </target>
-
-    <!-- TARGET : compile -->
-    <target name="compile" depends="clean, prepare">
-        <javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="full.classpath" includeantruntime="no">
->>>>>>> df05c41bc62504a3c7ec2dedf0b4624e55da309d
-            <include name="**/*.java"/>
-         </javac>
-    </target>
-	
-<<<<<<< HEAD
-	<target name="2.export" depends="1.compile" description="Export the project into a .jar file">
-		<delete dir="${dist.dir}"/>
-		<mkdir dir="${dist.dir}"/>
-		<jar destfile="${dist.dir}/${export.file}" basedir="${build.dir}" excludes="**/EasyBooking.class"/>
-    </target>	
-    
-	
-	<target name="3.enhance-classes" depends="1.compile" description="Adds JDO code to the persisten compiled classes">
-    	<taskdef name="enhancer" classpathref="classpath" classname="org.datanucleus.enhancer.EnhancerTask"/>
-   		<enhancer classpathref="classpath" failonerror="true">
-=======
-    <!-- TARGET : enhance -->
-    <target name="enhance" depends="compile">
-    	<taskdef name="enhancer" classpathref="full.classpath" classname="org.datanucleus.enhancer.EnhancerTask" />
-    	
-   		<enhancer classpathref="full.classpath" failonerror="true">
->>>>>>> df05c41bc62504a3c7ec2dedf0b4624e55da309d
-            <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
-            <fileset dir="${bin.dir}">
-                <include name="**/*.class"/>
-            </fileset>
-   		</enhancer>
-    </target>
-
-<<<<<<< HEAD
-    <target name="4.create-db-schema" depends="3.enhance-classes" description="Creates DB Schema on the DB Server">
-        <taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
-    	<schematool mode="create" classpathref="classpath" props="datanucleus.properties" failonerror="true">
-=======
-    <!-- TARGET : SchemaTool "create" -->
-    <target name="createschema" depends="enhance">
-        <taskdef name="schematool" classpathref="full.classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
-
-    	<schematool mode="create" classpathref="full.classpath" failonerror="true" props="datanucleus.properties">
->>>>>>> df05c41bc62504a3c7ec2dedf0b4624e55da309d
-            <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
-            <fileset dir="${bin.dir}">
-                <include name="**/*.class"/>
-            </fileset>
-        </schematool>
-    </target>
-
-<<<<<<< HEAD
-	<target name="5.server-remote" description="Runs the Remote Server">
-		<java classname="bin.EasyBookingServer" classpathref="classpath" fork="true">
-			<jvmarg value="-Djava.rmi.server.codebase=file:${bin.dir}/"/>
-			<jvmarg value="-Djava.security.policy=${policy.file}"/>		
-			<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
-        	<arg value="${rmiregistry.IP}"/> 
-	 		<arg value="${rmiregistry.port}"/> 
-			<arg value="${server.Name}"/> 
-        </java>
-	</target>
-	
-	<target name="6.delete-db-schema" depends="3.enhance-classes" description="Drops DB sechema from the DB Server">
-		<taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
-    	<schematool mode="delete" classpathref="classpath" props="datanucleus.properties" failonerror="true">            
-    	   	<sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
-    	 	<fileset dir="${bin.dir}">
-           		<include name="**/*.class"/>
-            </fileset>
-        </schematool>
-	</target>
-</project>
-=======
-    <!-- TARGET : SchemaTool "delete" -->
-    <target name="deleteschema">
-        <taskdef name="schematool" classpathref="full.classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
-
-    	 	<schematool mode="delete" classpathref="full.classpath" failonerror="true" props="datanucleus.properties">            
-    	      <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
-    	 		<fileset dir="${bin.dir}">
-                <include name="**/*.class"/>
-            </fileset>
-        </schematool>
-    </target>
-	
-	 <!-- SchemaTool "dbinfo" -->
-	    <target name="schemainfo">
-	    	<taskdef name="schematool" classpathref="full.classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
-	    	
-	        <schematool mode="dbinfo" classpathref="full.classpath" failonerror="true" props="datanucleus.properties">
-	        	 <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
-	        	<fileset dir="${bin.dir}">
+	<project basedir="." default="5.server-remote" name="EasyBooking">
+	    <property name="src.dir" location="src"/>
+	    <property name="bin.dir" location="bin"/>
+		<property name="lib.dir" location="lib"/>
+		<property name="dist.dir" location="dist"/>
+	   	<property name="build.dir" location="bin"/>
+		<property name="resources.dir" location="resources"/>
+		<property name="server.Name" value="EasyBooking"/>
+		<property name="rmiregistry.IP" value="127.0.0.1"/>
+		<property name="rmiregistry.port" value="1099"/> 
+		<property name="export.file" value="EasyBooking.jar"/>
+		<property name="policy.file" location="security/java.policy"/>	
+		
+	    <path id="classpath">
+	        <fileset dir="${lib.dir}">
+	            <include name="**/*.jar"/>
+	        </fileset>
+	        <pathelement location="${bin.dir}"/>
+	        <pathelement location="${resources.dir}"/>
+	    </path>
+		
+	    <target name="1.compile" description="Builds the source code">
+	    	<delete dir="${bin.dir}"/>
+	    	<mkdir dir="${bin.dir}"/>
+	    	<javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="classpath" includeantruntime="false" fork="true">
+	            <include name="**/*.java"/>
+	         </javac>
+	    </target>
+		
+		<target name="2.export" depends="1.compile" description="Export the project into a .jar file">
+			<delete dir="${dist.dir}"/>
+			<mkdir dir="${dist.dir}"/>
+			<jar destfile="${dist.dir}/${export.file}" basedir="${build.dir}" excludes="**/EasyBooking.class"/>
+	    </target>	
+	    
+		
+		<target name="3.enhance-classes" depends="1.compile" description="Adds JDO code to the persisten compiled classes">
+	    	<taskdef name="enhancer" classpathref="classpath" classname="org.datanucleus.enhancer.EnhancerTask"/>
+	   		<enhancer classpathref="classpath" failonerror="true">
+	            <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
+	            <fileset dir="${bin.dir}">
 	                <include name="**/*.class"/>
 	            </fileset>
-       
+	   		</enhancer>
+	    </target>
+
+	    <target name="4.create-db-schema" depends="3.enhance-classes" description="Creates DB Schema on the DB Server">
+	        <taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
+	    	<schematool mode="create" classpathref="classpath" props="datanucleus.properties" failonerror="true">
+	            <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
+	            <fileset dir="${bin.dir}">
+	                <include name="**/*.class"/>
+	            </fileset>
 	        </schematool>
 	    </target>
-    <!-- TARGET : Run -->	
-	<target name="run" depends="createschema">
-        <java classname="es.deusto.ingenieria.sd.datanucleus.jdo.DAOTest_Copies" classpathref="full.classpath" fork="true">
-        	<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
-		</java>
-    </target>
-	 
-	<!-- TARGET : RMI Service Section - export and runServer -->	
-	
-	<target name="export" depends="compile" description="Export the project into a .jar file">
-			<jar destfile="${dist.dir}/${export.file}" basedir="${bin.dir}" includes="**/IEasyBookingManager.class"/>
-    </target>	
-	
-	<!-- TARGET : Running the Server -->	
-	
-	<target name="runserver" depends="createschema" description="Runs the Server">
-			<java classname="server.EasyBookingManagerServer" classpathref="full.classpath" fork="true">
+
+		<target name="5.server-remote" description="Runs the Remote Server">
+			<java classname="bin.EasyBookingServer" classpathref="classpath" fork="true">
 				<jvmarg value="-Djava.rmi.server.codebase=file:${bin.dir}/"/>
 				<jvmarg value="-Djava.security.policy=${policy.file}"/>		
 				<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
-	        	<arg value="${server.IP}"/> 
-		 		<arg value="${server.port}"/> 
+	        	<arg value="${rmiregistry.IP}"/> 
+		 		<arg value="${rmiregistry.port}"/> 
 				<arg value="${server.Name}"/> 
 	        </java>
-	 </target>
-</project>
->>>>>>> df05c41bc62504a3c7ec2dedf0b4624e55da309d
+		</target>
+		
+		<target name="6.delete-db-schema" depends="3.enhance-classes" description="Drops DB sechema from the DB Server">
+			<taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
+	    	<schematool mode="delete" classpathref="classpath" props="datanucleus.properties" failonerror="true">            
+	    	   	<sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
+	    	 	<fileset dir="${bin.dir}">
+	           		<include name="**/*.class"/>
+	            </fileset>
+	        </schematool>
+		</target>
+	</project>
