@@ -19,8 +19,8 @@ import domainObjects.Vuelo;
 
 public class DB {
 	private PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-	//private PersistenceManager pm = pmf.getPersistenceManager();				
-	//private Transaction transaction = pm.currentTransaction();
+	private PersistenceManager pm = pmf.getPersistenceManager();				
+	private Transaction transaction = pm.currentTransaction();
 	private static DB instance;
 	
 	
